@@ -21,3 +21,48 @@ docker build -t api-gateway .
 docker run -p 3000:3000 api-gateway
 ```
 
+# Kubernetes Deployment and Service
+
+```
+# Kubernetes Deployment and Service
+
+```
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: narayanprusty/api-gateway
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: HELLO_WORLD_SERVICE
+          value: http://<<ClusterIP>>:4000
+        - name: DEMO_FAREWELL
+          value: http://<<ClusterIP>>:5000
+        - name: PORT
+          value: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-gateway
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+  selector:
+      app: api-gateway
+  type: LoadBalancer
+```
