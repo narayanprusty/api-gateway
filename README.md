@@ -15,9 +15,9 @@ npm start
 
 ```
 # Build your docker
-docker build -t hello-world .
+docker build -t api-gateway .
 
 # run your docker
-docker run -p 3000:3000 hello-world
+docker run -p 3000:3000 api-gateway
 ```
 
