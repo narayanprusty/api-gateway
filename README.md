@@ -46,11 +46,9 @@ spec:
         - containerPort: 3000
         env:
         - name: HELLO_WORLD_SERVICE
-          value: http://<<ClusterIP>>:4000
-        - name: DEMO_FAREWELL
-          value: http://<<ClusterIP>>:5000
-        - name: PORT
-          value: 80
+          value: http://<<HELLO_WORLD_CLUSTER_IP>>:4000
+        - name: GREETER_SERVICE
+          value: http://<<GREETER_CLUSTER_IP>>:5000
 ---
 kind: Service
 apiVersion: v1
@@ -60,7 +58,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: http
+      targetPort: 3000
       protocol: TCP
   selector:
       app: api-gateway
