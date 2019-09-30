@@ -6,7 +6,7 @@ exports.print = async (req, res, next) => {
     proxyReqPathResolver: function (req) {
       var parts = req.url.split('?');
       var updatedPath = parts[0];
-      var queryString = `?name=${req.user.name}`;
+      var queryString = `?name=${encodeURIComponent(req.user.name)}`;
       return updatedPath + queryString;
     }
   });
