@@ -21,9 +21,7 @@ docker build -t api-gateway .
 docker run -p 3000:3000 api-gateway
 ```
 
-# Kubernetes Deployment and Service
 
-```
 # Kubernetes Deployment and Service
 
 ```
